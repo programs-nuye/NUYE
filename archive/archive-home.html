@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=400, initial-scale=1.0">
+  <title>NUYS Program Notes Archive</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&family=Marcellus+SC&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: #000;
+      font-family: "EB Garamond", Garamond, serif;
+      color: #f2f2f2;
+      line-height: 1.55;
+    }
+
+    .archive-page {
+      width: 400px;
+      margin: auto;
+      min-height: 100vh;
+      background: linear-gradient(to bottom, #000 0%, #214478 45%, #000 100%);
+      padding: 1.5rem 1rem 3rem;
+    }
+
+    .archive-header {
+      text-align: center;
+      padding: 2rem 0 1.5rem;
+      border-bottom: 1px solid rgba(172,237,255,0.35);
+      margin-bottom: 2rem;
+    }
+
+    .archive-header h1 {
+      font-family: "Marcellus SC", serif;
+      color: #acedff;
+      font-size: 2rem;
+      font-weight: 400;
+      margin: 0 0 0.5rem;
+      letter-spacing: 0.04em;
+    }
+
+    .archive-header p {
+      margin: 0;
+      color: #d0eaff;
+      font-size: 1.05rem;
+    }
+
+    .archive-nav {
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 1rem;
+    }
+
+    .archive-nav a {
+      color: #8fd8ff;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .archive-nav a:hover {
+      text-decoration: underline;
+    }
+
+    .archive-section {
+      margin: 2rem 0;
+    }
+
+    .archive-section h2 {
+      font-family: "Marcellus SC", serif;
+      color: #acedff;
+      font-size: 1.25rem;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      border-bottom: 1px solid rgba(172,237,255,0.35);
+      padding-bottom: 0.35rem;
+      margin-bottom: 1rem;
+    }
+
+    .archive-card {
+      display: block;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(172,237,255,0.25);
+      border-radius: 0.5rem;
+      padding: 0.85rem 1rem;
+      margin-bottom: 0.75rem;
+      color: #f2f2f2;
+      text-decoration: none;
+    }
+
+    .archive-card:hover {
+      background: rgba(172,237,255,0.12);
+      border-color: #6290d4;
+    }
+
+    .archive-card-title {
+      display: block;
+      color: #acedff;
+      font-weight: bold;
+      font-size: 1.1rem;
+      margin-bottom: 0.15rem;
+    }
+
+    .archive-card-note {
+      display: block;
+      color: #d0eaff;
+      font-size: 0.95rem;
+    }
+
+    .archive-footer {
+      margin-top: 3rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(172,237,255,0.25);
+      text-align: center;
+      font-size: 0.9rem;
+      color: #c8eaff;
+    }
+
+    .archive-footer a {
+      color: #8fd8ff;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .archive-footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+  <main class="archive-page">
+
+    <header class="archive-header">
+      <h1>NUYS Program Notes Archive</h1>
+      <p>For those times when one set of program notes just isn't enough.</p>
+    </header>
+
+    <nav class="archive-nav">
+      <a href="../index.html">← Avoid this rabbit hole. Return to safety.</a>
+    </nav>
+
+    <section class="archive-section">
+      <h2>Browse the Archive</h2>
+
+      <a class="archive-card" href="archive-composers.html">
+        <span class="archive-card-title">Composers</span>
+        <span class="archive-card-note">Remember the composer's name? Scroll this list.</span>
+      </a>
+
+      <a class="archive-card" href="archive-works.html">
+        <span class="archive-card-title">Works</span>
+        <span class="archive-card-note">If you happen to remember the name of the piece. </span>
+      </a>
+
+      <a class="archive-card" href="archive-topics.html">
+        <span class="archive-card-title">Topics</span>
+        <span class="archive-card-note">Can't remember anything? Try some trivia.</span>
+      </a>
+    </section>
+
+    <section class="archive-section">
+      <h2>Seasonal Programs</h2>
+
+      <a class="archive-card" href="2026-2-Spring/">
+        <span class="archive-card-title">Spring 2026</span>
+        <span class="archive-card-note">Patriotic program featuring Gould, Tchaikovsky, Copland, and Sousa. Happy 250th to the USA.</span>
+      </a>
+
+      <!-- Add future archived seasons here:
+      <a class="archive-card" href="2026-3-Fall/">
+        <span class="archive-card-title">Fall 2026</span>
+        <span class="archive-card-note">Brief description of the program.</span>
+      </a>
+      -->
+
+    </section>
+
+    <footer class="archive-footer">
+      <p><a href="../index.html">Your last chance to escape.</a></p>
+    </footer>
+
+  </main>
+</body>
+</html>
