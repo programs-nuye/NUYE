@@ -1,10 +1,13 @@
 <!--
+DRAFT
 NUYE Digital Program Notes
-BUILD: 15 April 2026 DRAFT VERSION
+BUILD: 16 May 2026 DRAFT VERSION
 (this must be updated manually as a version check
 to combat some browsers caching too aggressively. If they have, use CTRL+SHIFT+R to hard reset.
 
 Safety notice: never comment out blocks that have nested comments already (like Co-WE or Percussion), that confuses html. Use the <template> and </template> markers to do that.
+
+When this program is archived, at around line 810, replace "template id="archive-banner-template"" with "ARCHIVE BANNER ACTIVE", and the ending "template" with a commented "END ARCHIVE BANNER".
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -231,6 +234,25 @@ nav a,
   font-size: 0.9rem;
 }
 
+/* 5.1.1 Floating ARCHIVED badge */
+.archive-floating-badge {
+  position: fixed;
+  top: 0.75rem;
+  right: 0.75rem;
+  z-index: 1000;
+  background: rgba(40, 40, 40, 0.88);
+  color: #f5f5f5;
+  border: 1px solid #7ea7df;
+  border-radius: 999px;
+  padding: 0.35rem 0.65rem;
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.35);
+}
+
 .draftbanner img {
   display: block;
   max-width: 100%;
@@ -271,9 +293,6 @@ nav a,
   height: 120px;
   background: linear-gradient(to bottom, rgba(33,68,120,1) 0%, rgba(0,0,0,1) 100%);
 }
-
-
-
 
 /* 5.4 Last black section extends to bottom of container visually */
 .container > .special1:last-of-type {
@@ -744,34 +763,90 @@ nav a,
   text-decoration: underline;
 }
 
+/* ******************************************************************
+   13. ARCHIVE BANNER
+******************************************************************* */
+.archive-banner {
+  background: #111;
+  color: #f5f5f5;
+  text-align: center;
+  padding: 0.75rem 1rem;
+  border-bottom: 2px solid #7ea7df;
+  font-family: "EB Garamond", Garamond, serif;
+}
+
+.archive-label {
+  font-size: 1rem;
+  font-weight: bold;
+  letter-spacing: 0.03em;
+  margin-bottom: 0.35rem;
+}
+
+.archive-links {
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.archive-links a {
+  color: #acedff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.archive-links a:hover {
+  text-decoration: underline;
+}
+
+.archive-links span {
+  color: #aaa;
+  margin: 0 0.25rem;
+}
+
 </style>
 </head>
 <body>
 
 
-
+<!-- ARCHIVE BANNER -->
 <div class="container">
+
+<template id="archive-banner-template">
+	<div class="archive-banner">
+	  <div class="archive-label">Archived Program — Fall 2026</div>
+	  <div class="archive-links">
+		<a href="../../index.html">← Current Program</a>
+		<span>|</span>
+		<a href="../archive-home.html">Archive Home</a>
+		<span>|</span>
+		<a href="../archive-composers.html">Composers</a>
+		<span>|</span>
+		<a href="../archive-works.html">Works</a>
+		<span>|</span>
+		<a href="../archive-topics.html">Topics</a>
+	  </div>
+	</div>
+
+	<div class="archive-floating-badge">Archived</div>
+</template>
 
 <!-- Intro Section -->
 <header id="top">
   <img src="images/logo-nuye-intro.png" alt="NUYE Logo">
   <div class="concert-info">
-    <h2>Spring Concert</h2>
-	<h3> Ridgeline HS</h3>
-    <p class="concert-details">7:00 pm&nbsp;&nbsp;May 11,&nbsp;2026</p>
+    <h2>Fall Concert</h2>
+	<h3> to be determined</h3>
+    <p class="concert-details">see&nbsp;&nbsp;you&nbsp;there!</p>
   </div>
 </header>
 
 <!-- Draft Banner, to mark when the program notes are up, but not yet complete -->
-<template id="draft-banner-template">
-<!--
+<template id="draft-banner-template"></template>
+<!--comment the "section id="draftbanner" section out & put template markers around it when not needed-->
 <section id="draftbanner" class="draftbanner" style="display:none;">
   <p><strong>⚠️ DRAFT VERSION:</strong> For final program notes, please check back on concert day.</p> 
-  
-  
-  </section>
--->
-</template>
+</section>
+
+
 
 <nav>
   <a href="#prep">Preparatory</a> |
@@ -790,8 +865,8 @@ nav a,
   <!-- Prep piece 1 -->
   <div class="piece-entry">
     <div class="piece-header">
-      <span class="piece-title">Fiddles on Fire</span>
-      <span class="piece-composer">Mark Williams</span>
+      <span class="piece-title">x</span>
+      <span class="piece-composer">x</span>
     </div>
 
     <div class="piece-pronunciation-line">
@@ -802,48 +877,10 @@ nav a,
     <div class="piece-separator"></div>
 
     <p class="piece-description"></p>
-    <img class="piece-image optional-image" src="images/image-prep-fiddles.webp" alt="fiddles">
-  </div>
-
-  <!-- Prep piece 2 -->
-  <div class="piece-entry">
-    <div class="piece-header">
-      <span class="piece-title">Renaissance Canzona</span>
-      <span class="piece-composer">Adriano Banchieri arr. Carl Strommen</span>
-    </div>
-
-    <div class="piece-pronunciation-line">
-      <span class="piece-pronunciation-left"></span>
-      <span class="piece-pronunciation-right"></span>
-    </div>
-
-    <div class="piece-separator"></div>
-
-    <p class="piece-description">
-      <em>Renaissance Canzona</em> is a piece originally written during the Renaissance. It reflects the elegant and balanced style of early instrumental music. The contrasting sections highlight different voices within the orchestra creating a rich texture. This piece helps our students learn about fugues and other important Renaissance aspects.
-    </p>
     <img class="piece-image optional-image" src="" alt="">
   </div>
 
-  <!-- Prep piece 3 -->
-  <div class="piece-entry">
-    <div class="piece-header">
-      <span class="piece-title">Cripple Creek</span>
-      <span class="piece-composer">Traditional arr. Edmond Siennicki</span>
-    </div>
 
-    <div class="piece-pronunciation-line">
-      <span class="piece-pronunciation-left"></span>
-      <span class="piece-pronunciation-right"></span>
-    </div>
-
-    <div class="piece-separator"></div>
-
-    <p class="piece-description">
-      <em>Cripple Creek</em> is a beloved American folk tune and has been played and passed down for generations. This arrangement features playful rhythms and a catchy melody that showcases the fun and storytelling of folk music. It's a lively piece that gives a glimpse into early American musical traditions.
-    </p>
-<img class="piece-image optional-image" src="images/image-prep-creek.webp" alt="Creek">
-  </div>
 </section>
 
 
@@ -856,50 +893,8 @@ nav a,
   <!-- Chamber piece 1 -->
   <div class="piece-entry">
     <div class="piece-header">
-      <span class="piece-title">John Henry</span>
-      <span class="piece-composer">Traditional arr. Carrie Lane Gruselle</span>
-    </div>
-
-    <div class="piece-pronunciation-line">
-      <span class="piece-pronunciation-left"></span>
-      <span class="piece-pronunciation-right"></span>
-    </div>
-
-    <div class="piece-separator"></div>
-	
-    <img class="piece-image optional-image" src="images/image-chamber-johnhenry.webp" alt="">
-
-    <p class="piece-description">
-      <em>John Henry</em> is a piece based on the legendary American folk hero. This piece tells the story of John Henry's strength and determination. Driving rhythms and bold melodies reflect the intensity of the famous steel driving contest. The music captures both the power and humanity of this iconic tale. 
-    </p>
-  </div>
-
-  <!-- Chamber piece 2 -->
-  <div class="piece-entry">
-    <div class="piece-header">
-      <span class="piece-title">Perpetual Fiddle Motion</span>
-      <span class="piece-composer">Brian Balmages</span>
-    </div>
-
-    <div class="piece-pronunciation-line">
-      <span class="piece-pronunciation-left"></span>
-      <span class="piece-pronunciation-right"></span>
-    </div>
-
-    <div class="piece-separator"></div>
-
-    <img class="piece-image optional-image" src="" alt="">
-	
-    <p class="piece-description">
-      <em>Perpetual Fiddle Motion</em> lives up to its name with continuous motion and flowing energy from start to finish. Inspired by fiddle styles, it features repeating patterns that pass between sections of the orchestra. The result is a vibrant and engaging work that keeps both the performers and listeners on their toes. 
-    </p>
-  </div>
-	
-  <!-- Chamber piece 3 -->
-  <div class="piece-entry">
-    <div class="piece-header">
-      <span class="piece-title"></span>
-      <span class="piece-composer"></span>
+      <span class="piece-title">x</span>
+      <span class="piece-composer">x</span>
     </div>
 
     <div class="piece-pronunciation-line">
@@ -910,13 +905,13 @@ nav a,
     <div class="piece-separator"></div>
 	
     <img class="piece-image optional-image" src="" alt="">
-	
+
     <p class="piece-description">
-      NUYCO will appear again in collaboration with NUYS. Watch for them at the end of the program! 
+      <em>x</em> x 
     </p>
-
-
   </div>
+
+
 
 </section>
 
@@ -959,15 +954,12 @@ nav a,
     <img src="images/logo-nuywe.png" alt="NUYWE Logo">
   </div>
   
-  <div class="piece-description">
-     For the upcoming semiquincentennial celebration, NUYWE showcases pieces by American composers.  
-    </div>
 
   <!-- Winds piece 1 -->
   <div class="piece-entry">
     <div class="piece-header">
-      <span class="piece-title">Celebration and Song</span>
-      <span class="piece-composer">Robert Sheldon</span>
+      <span class="piece-title">x</span>
+      <span class="piece-composer">x</span>
     </div>
 
     <div class="piece-pronunciation-line">
@@ -978,53 +970,12 @@ nav a,
     <div class="piece-separator"></div>
 
     <p class="piece-description">
-      Robert Sheldon created a rhythmic driven and fast paced celebratory overture. The perfect addition to our 250 year celebrations!  
+      x  
     </p>
     <img class="piece-image optional-image" src="" alt="">
   </div>
   
-  <!-- Winds piece 2 -->
-  <div class="piece-entry">
-    <div class="piece-header">
-      <span class="piece-title">Flashpoint</span>
-      <span class="piece-composer">Tyler Arcari</span>
-    </div>
 
-    <div class="piece-pronunciation-line">
-      <span class="piece-pronunciation-left"></span>
-      <span class="piece-pronunciation-right"></span>
-    </div>
-
-    <div class="piece-separator"></div>
-
-    <p class="piece-description">
-      This high-energy rhythmic work uses meter changes, syncopation, dotted quarter notes, and tied rhythms to create excitement. Excellent use of unison scoring reinforces the rhythms and adds power to the sound. Other effects such as horn rips and handclaps add an extra layer of color. 
-    </p>
-    <img class="piece-image optional-image" src="" alt="">
-  </div>
-
-
-
-  
-    <!-- Winds piece 3 -->
-  <div class="piece-entry">
-    <div class="piece-header">
-      <span class="piece-title">How to Train Your Dragon</span>
-      <span class="piece-composer">John Powell arr. Sean O'Loughlin</span>
-    </div>
-
-    <div class="piece-pronunciation-line">
-      <span class="piece-pronunciation-left"></span>
-      <span class="piece-pronunciation-right"></span>
-    </div>
-
-    <div class="piece-separator"></div>
-  
-    <p class="piece-description">
-      This exciting and emotionally powerful music from the DreamWorks film has taken on a life of its own. Here is an adaptation for bands that features the well-known tender lyricism as well as the dramatic heroic moments of the original score.
-    </p>
-	<img class="piece-image optional-image" src="images/image-winds-dragon.webp" alt="dragons">
-  </div>
   
 </section>
 
@@ -1034,15 +985,12 @@ nav a,
     <img src="images/logo-nuye-percussion.webp" alt="Percussion Logo">
   </div>
 
-  <div class="piece-description">
-     The NUYE percussion section is excited to be able to share our very first percussion ensemble piece. Ensemble music gives us an opportunity to highlight the section and stretch our rhythmic abilities and musicianship.  
-  </div>
-	
+
   <!-- Perc piece 1 -->
   <div class="piece-entry">
     <div class="piece-header">
-      <span class="piece-title">Battle of the Legends</span>
-      <span class="piece-composer">Gabriel Hurd</span>
+      <span class="piece-title">x</span>
+      <span class="piece-composer">x</span>
     </div>
 
     <div class="piece-pronunciation-line">
@@ -1053,10 +1001,9 @@ nav a,
     <div class="piece-separator"></div>
 
     <p class="piece-description">
-	Gabriel Hurd, NUYS's trumpet player and sometimes Wind Ensemble percussionist, volunteered to compose this piece that features polyrhythms and interweaving melodies. </p>
-	<p class="piece-description">	"I wrote this piece because I always thought percussion was really cool. I had never composed anything with percussion before, and I thought it would be fun! As you can probably guess by the name, the piece is supposed to represeent an epic final battle and the internal struggle that comes with it. I hope you like it!" 
-	</p>
-    <img class="piece-image optional-image" src="images/image-percussion.png" alt="percussion-mallets">
+	x </p>
+
+    <img class="piece-image optional-image" src="" alt="">
 	
   </div> 
  
@@ -1070,173 +1017,60 @@ nav a,
     <img src="images/logo-nuys-paleblue.webp" alt="NUYS Logo" class="fullwidth">
   </div>
     <div class="overview">
-     In honor of the 250th anniversary of the Declaration of Independence, NUYS presents a patriotic program.  
+     Comment.  
     </div>
 	
-		<img src="images/timeline-overall.webp" alt="Timeline of Eras"
+		<img src="" alt="Timeline of Eras"
 		style="width:100%; display:block; margin:1rem 0;">
 	
 	<div class="overview">
-     Today's composers, with one exception, were Americans who put their love of country and their admiration for the new American traditions into their music.  
+     Summary.  
     </div>
 
   <!-- Symphony Sub-menu -->
   <nav class="sub-toc">
 	<a href="#salute" class="toc-stack">
-      <span class="toc-line-main">American<br>Salute</span></a>
+      <span class="toc-line-main">Title<br>1</span></a>
     <a href="#rococo" class="toc-stack">
-      <span class="toc-line-main">Variations</span>
-      <span class="toc-line-small">on a</span>
-      <span class="toc-line-main">Rococo Theme</span>
+      <span class="toc-line-main">Title</span>
+      <span class="toc-line-small">on</span>
+      <span class="toc-line-main">3 lines</span>
     </a>
-    <a href="#shaker">Shaker<br>Melody</a>
-    <a href="#shaker">Hoedown<br> </a>
+    <a href="#shaker">Title 3<br> </a>
 	<a href="#forever" class="toc-stack">
-      <span class="toc-line-main">Stars and Stripes<br>Forever</span></a>
+      <span class="toc-line-main">Title<br>4</span></a>
   </nav>
 
-  <!-- Piece 1: Morton Gould -->
+  <!-- Piece 1: Composer -->
   <div id="salute" class="text-wrap">
     <div class="symphony-header-block">
-      <p class="symphony-piece-title">American Salute</p>
-      <div class="symphony-composer-name-base symphony-composer-name-modern">Morton Gould</div>
+      <p class="symphony-piece-title">Title</p>
+      <div class="symphony-composer-name-base symphony-composer-name-modern">Composer</div>
       <span class="symphony-pronunciation"></span>
       <div class="timeline-rect">
-		  <img src="images/timeline-gould.webp" alt="Timeline Gould">
+		  <img src="" alt="Timeline Composer">
 	  </div>
 	  <div class="overview">
-      Morton Gould dashed off this piece overnight, and it remains his best-known work.
+      Brief summary.
       </div>
 	</div>
   </div>
   <div class="divider"></div>
   
-    <!-- Block: Gould -->
+    <!-- Block: Composer -->
     <div>
-    <img src="images/block-gould.webp" alt="Gould Info" style="width:100%; display:block;">
+    <img src="" alt="portrait" style="width:100%; display:block;">
     </div>
   <div class="divider"></div>
   
-    <!-- Block: Salute -->
+    <!-- Block: Piece -->
     <div>
-      <img src="images/block-gould-salute.webp" alt="Salute Info" style="width:100%; display:block;">
+      <img src="" alt="Piece Info" style="width:100%; display:block;">
     </div>
 
   <div class="divider"></div>
   <div class="divider"></div>
   
-  <!-- Piece 2: Tchaikovsky -->
-  <div id="rococo" class="text-wrap">
-    <div class="symphony-header-block">
-      <p class="symphony-piece-title">Variations on a Rococo Theme</p>
-      <div class="symphony-composer-name-base symphony-composer-name-romantic">Pyotr Ilych Tchaikovsky</div>
-      <span class="symphony-pronunciation">(chai-KAAF-skee)</span>
-      <div class="timeline-rect">
-		  <img src="images/timeline-tchaikovsky.webp" alt="Timeline Tchaikovsky"> 
-	  </div>
-      <div class="overview">
-      Despite tensions and outright wars between the USA and Russia, this composer and his works have been beloved in America for over 130 years. 
-      </div>
-	</div>
-  </div>
-    <div class="divider"></div>
-	    <!-- Block:Tchaikovsky -->
-  <div>
-     <img src="images/block-tchaikovsky.webp" alt="Tchaikovsky Info" style="width:100%; display:block;">
-  </div>
-
-	  <div class="divider"></div>
-	<!-- Block: Variations -->
-    <div>
-      <img src="images/block-tchaikovsky-variations.webp" alt="Variations" style="width:100%; display:block;">
-    </div>
-  <div class="divider"></div>
-  	<!-- Block: Listen -->
-    <div>
-      <img src="images/block-tchaikovsky-listen.webp" alt="Variations" style="width:100%; display:block;">
-    </div>
-  <div class="divider"></div>
-    <!-- Block: Rococo -->
-    <div>
-      <img src="images/block-tchaikovsky-rococo.webp" alt="Rococo" style="width:100%; display:block;">
-    </div>
-  <div class="divider"></div>
-    <!-- Block: Cello Instrument Showcase -->
-    <div>
-      <img src="images/block-tchaikovsky-cello.webp" alt="Cello" style="width:100%; display:block;">
-    </div>
-  <div class="divider"></div>
-  <div class="divider"></div>
-  
-  
-  <!-- Pieces 3&4 -->
-<div id="shaker" class="text-wrap">
-    <div class="symphony-header-block">
-        <p class="symphony-piece-title">Variations on a Shaker Melody <span style="font-size: 0.7em;">from <em>Appalachian Spring</em></span></p>
-		<p class="symphony-piece-title">Hoe-Down <span style="font-size: 0.7em;">from <em>Rodeo</em></span></p>
-        <div class="symphony-composer-name-base symphony-composer-name-modern">Aaron Copland
-		</div>
-        <span class="symphony-pronunciation">[KOPE-lund]</span>
-    </div>
-    <div class="timeline-rect">
-        <img src="images/timeline-copland.webp" alt="Timeline Copland">
-    </div>
-    <div class="overview">
-        Copland intended his music to represent American ideals of optimism and democracy. Listeners often describe his pieces as "open" and "spacious."
-    </div>
-</div>
-  
-    <div class="divider"></div>
-  
-    <!-- Block: Copland -->
-  <div>
-    <img src="images/block-copland.webp" alt="Copland Info" style="width:100%; display:block;">
-  </div>
-  
-  <div class="divider"></div>
-  
-    <!-- Block: Piece = Shaker -->
-  <div>
-    <img src="images/block-copland-shaker.webp" alt="Shaker Info" style="width:100%; display:block;">
-  </div>
-  
-  <div class="divider"></div>
-  
-    <!-- Block: Piece = Hoedown -->
-  <div>
-    <img src="images/block-copland-hoedown.webp" alt="Hoedown Info" style="width:100%; display:block;">
-  </div>
-
-  <div class="divider"></div>
-  <div class="divider"></div>
-
-  <!-- Piece 4: Stars&Stripes-->
-  <div id="forever" class="text-wrap">
-      <div class="symphony-header-block">
-        <p class="symphony-piece-title">Stars and Stripes Forever&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: 0.7em;">in collaboration with NUYCO</span></p>
-	    <div class="symphony-composer-name-base symphony-composer-name-romantic">John Philip Sousa
-	    </div>
-        <span class="symphony-pronunciation">[SOO-zah]</span>
-        <div class="timeline-rect">
-		  <img src="images/timeline-sousa.webp" alt="Timeline Sousa">
-	    </div>
-        <div class="overview">
-        Enjoy the exuberant, the patriotic, the official . . . <br>
-		march of the United States of America. 
-		<p><span style="font-size: 0.7em;">(By order of Congress, December 11, 1987.)</span></p>
-        </div>
-	  </div>
-  </div>
-  <div class="divider"></div>
-    <!-- Block: Sousa -->  
-  <div>
-    <img src="images/block-sousa.webp" alt="Sousa Info" style="width:100%; display:block;">
-  </div>
-  <div class="divider"></div>
-    <!-- Block: Stars&Stripes -->  
-  <div>
-    <img src="images/block-sousa-forever.webp" alt="Stars & Stripes Forever Info" style="width:100%; display:block;">
-  </div>
 
 
 
@@ -1244,7 +1078,7 @@ nav a,
 
 <!-- =================== Final Section =================== -->
   <section class="special1">
-      <img src="images/block-outro-spring26.webp" alt="phones & thanks" style="width:100%; display:block;">
+      <img src="" alt="phones & thanks" style="width:100%; display:block;">
 
 <!-- Donation buttons -->
 <div class="donate-buttons">
