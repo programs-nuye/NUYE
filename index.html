@@ -1,7 +1,7 @@
 <!--
 DRAFT
 NUYE Digital Program Notes
-BUILD: 16 May 2026 DRAFT VERSION
+BUILD: 29 Aug 2026 DRAFT VERSION
 (this must be updated manually as a version check
 to combat some browsers caching too aggressively. If they have, use CTRL+SHIFT+R to hard reset.
 
@@ -735,6 +735,35 @@ nav a,
   margin: 0 0.4rem;
 }
 
+/* 11A.1 Small sticky navigation top bar for archived notes */
+.archive-sticky-nav {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  background: rgba(10, 24, 42, 0.94);
+  border-bottom: 1px solid #6290d4;
+  text-align: center;
+  padding: 0.35rem 0.25rem;
+  font-family: "EB Garamond", Garamond, serif;
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+.archive-sticky-nav a {
+  color: #acedff;
+  text-decoration: none;
+  font-weight: bold;
+  margin: 0 0.25rem;
+}
+
+.archive-sticky-nav a:hover {
+  text-decoration: underline;
+}
+
+/* 11A.2 moves "Archived" badge a little lower */
+.archive-floating-badge {
+  top: 2.4rem;
+}
 
 /* ******************************************************************
    11. DONATION BUTTONS
@@ -868,6 +897,14 @@ nav a,
 	  </div>
 	</div>
 
+<div class="archive-sticky-nav">
+  <a href="../../index.html">Current</a>
+  <a href="../archive-home.html">Archive</a>
+  <a href="../archive-composers.html">Composers</a>
+  <a href="../archive-works.html">Works</a>
+  <a href="../archive-topics.html">Topics</a>
+</div>
+
 	<div class="archive-floating-badge">Archived</div>
 </template>
 
@@ -876,8 +913,8 @@ nav a,
   <img src="images-current/logo-nuye-intro.png" alt="NUYE Logo">
   <div class="concert-info">
     <h2>Fall Concert</h2>
-	<h3> to be determined</h3>
-    <p class="concert-details">see&nbsp;&nbsp;you&nbsp;there!</p>
+	<h3> Weber High School</h3>
+    <p class="concert-details">3:00 pm November 21, 2026</p>
   </div>
 </header>
 
