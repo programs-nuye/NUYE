@@ -1,0 +1,1432 @@
+<!--
+DRAFT
+NUYE Digital Program Notes
+BUILD: 29 Aug 2026 DRAFT VERSION FALL 2026 CONCERT
+Prep and Percussion turned off
+(this must be updated manually as a version check
+to combat some browsers caching too aggressively. If they have, use CTRL+SHIFT+R to hard reset.
+
+Safety notice: never comment out blocks that have nested comments already (like Co-WE or Percussion), that confuses html. Use the <template> and </template> markers to do that.
+
+When this program is archived, at around line 810, replace "template id="archive-banner-template"" with "ARCHIVE BANNER ACTIVE", and the ending "template" with a commented "END ARCHIVE BANNER".
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=400, initial-scale=1.0">
+  <title>Northern Utah Youth Ensembles</title>
+
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Asul:wght@300;400&family=EB+Garamond&family=Marcellus+SC&display=swap&family=Nothing+You+Could+Do&display=swap&family=Special+Elite&display=swap&family=Montserrat:wght@500;700&family=Noto+Sans:wght@300;400;500;700&Italianno&family=Pirata+One&family=Parisienne&family=Allura&family=Josefin+Sans&family=Orbitron&display=swap" rel="stylesheet">
+
+
+
+<style>
+
+/* **********************************************************************
+   PROGRAM NOTES CSS — MINI MAP (REFERENCE ONLY)
+   ----------------------------------------------------------------------
+   SECTIONS:
+     1. GLOBAL RESET & VARIABLES
+     2. MAIN CONTAINER (400px frame + inset padding)
+     3. HEADER (title block, gradient, concert details)
+     4. NAVIGATION (main ensemble nav + NUYS sub-toc)
+     5. SECTION BACKGROUNDS (Prep/Chamber/CO-WE/Winds/Symphony)
+     6. LOGOS & FULL-WIDTH IMAGES (section logos, timeline images)
+     7. PIECE BLOCKS — PREP/CHAMBER/CO-WE/WINDS
+          - .piece-entry
+          - .piece-header (auto title/composer)
+          - .piece-pronunciation-line (optional left/right)
+          - .piece-separator
+          - .piece-description
+     8. BASE PARAGRAPH TEXT (non-NUYS)
+     9. NUYS (SYMPHONY) CUSTOM SYSTEM
+          - .symphony-piece-title
+          - .symphony-composer-name-base + era-class
+               renaissance / baroque / classical / romantic / modern
+          - .symphony-pronunciation
+          - timelines, overview spacing, black bars
+    10. CAROUSEL COMPONENT (Faust)
+    11. DONATION BUTTONS (square buttons at end)
+
+   HTML TEMPLATES:
+     • All ensembles EXCEPT Symphony use the standard “piece-entry” block:
+         <div class="piece-entry">
+            <div class="piece-header">
+               <span class="piece-title">…</span>
+               <span class="piece-composer">…</span>
+            </div>
+            <div class="piece-pronunciation-line">
+               <span class="piece-pronunciation-left"></span>
+               <span class="piece-pronunciation-right"></span>
+            </div>
+            <div class="piece-separator"></div>
+            <p class="piece-description">…</p>
+            <img src="…" alt="">
+         </div>
+
+     • Symphony (NUYS) uses a DIFFERENT HEADER SYSTEM:
+         <p class="symphony-piece-title">…</p>
+         <div class="symphony-composer-name-base symphony-composer-name-ERA">
+            Composer Name
+         </div>
+         <span class="symphony-pronunciation"></span>
+
+   RULES:
+     • Never mix “piece-” classes into Symphony blocks.
+     • Never mix Symphony title/composer into Prep/Chamber/CO-WE/Winds.
+     • Use empty pronunciation spans (left/right) if no data exists.
+     • More than one <p> and <img> is allowed inside any piece-entry.
+
+************************************************************************ */
+
+
+/* ******************************************************************
+   1. GLOBAL RESET & VARIABLES
+******************************************************************* */
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --container-padding: 0.75rem;  /* side padding inside frame */
+  --inner-inset: 0.25rem;        /* text inset for text blocks */
+}
+
+body {
+  margin: 0;
+  font-family: 'EB Garamond', serif;
+  line-height: 1.6;
+  background: #000;              /* black outside the frame */
+}
+
+/* ******************************************************************
+   2. MAIN CONTAINER
+   - Outer frame
+   - Text inset defaults
+******************************************************************* */
+.container {
+  width: 400px;
+  margin: auto;
+  padding: 1rem var(--container-padding);
+  box-shadow: 0 0 10px rgba(0,0,0,0.15);
+  background: #f2f2f2;           /* neutral outer border */
+}
+
+/* 2.1 Text-only inset inside container */
+.container :is(
+  p, h1, h2, h3, h4, h5, h6,
+  ul, ol, blockquote, figure,
+  .text-wrap, .overview, .pronunciation
+) {
+  padding-left: var(--inner-inset);
+  padding-right: var(--inner-inset);
+}
+
+/* ******************************************************************
+   3. HEADER (black → dark blue gradient)
+******************************************************************* */
+header {
+  text-align: center;
+  background: linear-gradient(to bottom, #000 0%, #214478 100%);
+  color: white;
+  padding: 1.5rem var(--inner-inset) 2rem;
+}
+
+header img {
+  width: calc(100% + (0.65 * var(--container-padding)));
+  margin-left: calc(-0.325 * var(--container-padding));
+  margin-right: calc(-0.50 * var(--container-padding));
+  margin-bottom: 2rem;
+  height: auto;
+  display: block;
+}
+
+header h2 {
+  font-family: 'Asul', sans-serif;
+  font-size: 3.2rem;
+  font-weight: 300;
+  color: #acedff;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.4);
+  margin-bottom: 0rem !important;
+}
+
+header h3 {
+  font-family: 'Asul', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 300;
+  color: #a4dffb;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.4);
+  margin-top: -0.2rem !important;
+  margin-bottom: 0.5rem;
+}
+
+header .concert-details {
+  font-family: 'Marcellus SC', serif;
+  font-size: 1.5rem;
+  color: #d0eaff;
+  margin: 0 0 3rem;
+}
+
+/* ******************************************************************
+   4. TOP NAVIGATION (main ensembles + NUYS sub-TOC)
+******************************************************************* */
+nav,
+.sub-toc {
+  background-color: #f0f0f0;
+  text-align: center;
+  padding: 0.5rem;
+}
+
+nav a,
+.sub-toc a {
+  text-decoration: none;
+  color: #003366;
+  font-weight: bold;
+}
+
+.sub-toc {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  align-items: center;   /* ← add this */ /*margin-bottom: 1rem;*/
+}
+
+.sub-toc a {
+  flex: 1;
+  text-align: center;
+  font-size: 0.9rem;
+  margin: 0 0.2rem;
+  word-wrap: break-word;
+}
+/* ===== Added for Pictures at an Exhibition formatting ===== */
+
+.sub-toc a .toc-line-main {
+  font-size: 1em;
+  display: inline-block;
+}
+
+.sub-toc a.toc-stack {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
+.sub-toc a.toc-stack .toc-line-small {
+  font-size: 0.6em;
+  font-weight: normal;
+  line-height: 1;
+}
+
+/* ******************************************************************
+   5. SECTION BACKGROUNDS & DRAFT BANNER
+******************************************************************* */
+
+/* 5.1 Draft banner */
+.draftbanner {
+  background: #B22234;
+  color: white;
+  text-align: center;
+  padding: 0.8rem;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+/* 5.1.1 Floating ARCHIVED badge */
+.archive-floating-badge {
+  position: fixed;
+  top: 0.75rem;
+  right: 0.75rem;
+  z-index: 1000;
+  background: rgba(40, 40, 40, 0.88);
+  color: #f5f5f5;
+  border: 1px solid #7ea7df;
+  border-radius: 999px;
+  padding: 0.35rem 0.65rem;
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.35);
+}
+
+.draftbanner img {
+  display: block;
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+  margin: 1rem auto;
+  box-sizing: border-box;
+}
+
+/* 5.2 Background colors per ensemble */
+.prep      { background: #F5D8DB; }
+.chamber   { background: #E7BC86; }
+.co-we     { background: #B99B7D; }
+.winds     { background: #E8AD72;  }  /* old: #825e2e with white text */
+.perc      { background: #B66576; }
+
+/* Fall 2026: keep inactive ensembles in the source, but hide them. */
+.prep,
+.perc,
+.inactive-ensemble-nav {
+  display: none;
+}
+.symphony  { background: #214478; color: #acedff; position: relative; }
+.special1  { background: #000;    color: #fff; }
+
+
+/* 5.2.1 Pale borders + bottom breathing room for small ensemble sections */
+.prep,
+.chamber,
+.co-we,
+.winds,
+.perc {
+  border-top: 2px solid rgba(255,255,255,0.8);
+  padding-bottom: 1rem;
+}
+
+.prep {
+  border-top: none;
+}
+
+/* 5.3 NUYS fade into black at end of Symphony section */
+.symphony::after {
+  content: "";
+  display: block;
+  height: 120px;
+  background: linear-gradient(to bottom, rgba(33,68,120,1) 0%, rgba(0,0,0,1) 100%);
+}
+
+/* 5.4 Last black section extends to bottom of container visually */
+.container > .special1:last-of-type {
+  margin-bottom: -0.75rem;  /* neutralize container bottom padding */
+  padding-bottom: 1.5rem;   /* internal breathing space in black */
+  background: #000;
+}
+
+/* ******************************************************************
+   6. SECTION LOGOS & FULL-WIDTH IMAGES
+******************************************************************* */
+
+/* 6.1 Section logos (Prep/Chamber/CO-WE/Winds/Symphony) */
+.section-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5rem 0 1.5rem 0; /* lots of color above the logo */
+  margin: 0;
+}
+
+.section-logo img {
+  width: 85%;
+  max-width: 340px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* 6.2 Full-width images for timelines / symphony / carousel / outro block */
+.timeline-rect img,
+.symphony img,
+.carousel img,
+.special1 img {
+  width: 100%;
+  max-width: none;
+  height: auto;
+  display: block;
+  margin: 0;
+}
+
+/* 6.3 NUYS black bar dividers between blocks */
+.divider {
+  width: 100%;
+  height: 1.5rem;
+  background-color: #000;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+/* 6.4 Timeline container — let timeline images touch inner edges */
+.timeline-rect img {
+  width: calc(100% + (2 * var(--inner-inset)));
+  margin-left: calc(-1 * var(--inner-inset));
+  margin-right: calc(-1 * var(--inner-inset));
+}
+
+/* ******************************************************************
+   7. PIECE BLOCKS — PREP / CHAMBER / CO-WE / WINDS
+   Auto-stacking header + unified pronunciations + separator
+******************************************************************* */
+
+/* 7.0 Each piece container */
+.piece-entry {
+  margin: 1.5rem 0 2.5rem;
+}
+
+.piece-entry > :last-child {
+  margin-bottom: 0;
+}
+
+/* ---------------------------------------------------------------
+   7.1 HEADER: Title + Composer (auto left/right, auto-wrap)
+---------------------------------------------------------------- */
+.piece-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.2rem;
+  padding-left: calc(1.2 * var(--inner-inset));
+  padding-right: calc(1.2 * var(--inner-inset));
+  margin-bottom: 0.25rem;
+}
+
+/* Tighter line spacing when header wraps */
+.piece-header span {
+  line-height: 1.1;
+}
+
+/* 7.1.1 Title (left) */
+.piece-title {
+  font-family: 'EB Garamond', serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #222;
+  flex: 1 1 auto;
+  white-space: nowrap;   /* stays on one line when possible */
+}
+
+/* 7.1.2 Composer (right) */
+.piece-composer {
+  font-family: 'Noto Sans', sans-serif;
+  font-size: 0.9rem;
+  color: #222;
+  font-weight: 400;
+  margin-left: auto;
+  white-space: nowrap;   /* stays on one line when possible */
+}
+
+/* ---------------------------------------------------------------
+   7.2 PRONUNCIATION LINE (unified, optional)
+---------------------------------------------------------------- */
+.piece-pronunciation-line {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Marcellus SC', serif;
+  font-size: 0.75rem;
+  color: #555;
+  padding-left: calc(1.5 * var(--inner-inset));
+  padding-right: calc(1.5 * var(--inner-inset));
+  margin-top: 0rem;
+  margin-bottom: 0.35rem;
+}
+
+/* 7.2.1 Left/right pronunciations behave independently */
+/* If only left exists, it stays left; if only right exists, it stays right. */
+.piece-pronunciation-left {
+  flex: 1;
+  text-align: left;
+}
+
+.piece-pronunciation-right {
+  flex: 1;
+  text-align: right;
+}
+
+/* ---------------------------------------------------------------
+   7.3 SEPARATOR LINE (always present)
+---------------------------------------------------------------- */
+.piece-separator {
+  border-top: 1px solid rgba(0,0,0,0.15);
+  margin-top: 0.25rem;                     /* distance from header/pronunciation */
+  margin-left: calc(1.2 * var(--inner-inset));
+  margin-right: calc(1.2 * var(--inner-inset));
+  margin-bottom: 0.6rem;                   /* distance before description or image */
+}
+
+/* ---------------------------------------------------------------
+   7.4 DESCRIPTION paragraph
+---------------------------------------------------------------- */
+.piece-description {
+  font-size: 1.15rem;
+  line-height: 1.55;
+  text-align: center;
+  margin-bottom: 1rem;
+  padding-left: var(--inner-inset);
+  padding-right: var(--inner-inset);
+}
+
+/* Add bottom space if a piece ends with text (no image after it) */
+.section-end {height: 1rem;}
+
+/* ---------------------------------------------------------------
+   7.5 IMAGES within piece blocks
+---------------------------------------------------------------- */
+.piece-entry img {
+  width: 100%;
+  display: block;
+  margin-top: 0.6rem;
+  margin-bottom: 1rem;
+}
+
+/* Hide optional images when src is empty */
+.optional-image[src="images-current/"] { display: none; }
+
+
+
+/* ******************************************************************
+   8. BASE PARAGRAPH TEXT — NON-NUYS ENSEMBLES
+******************************************************************* */
+.prep p,
+.chamber p,
+.co-we p,
+.winds p, 
+.perc p {
+  font-size: 1.2rem;
+  line-height: 1.55;
+}
+
+
+/* ******************************************************************
+   9. NUYS (SYMPHONY) SECTION
+   - Layout & overview
+   - Titles & composer names (era-specific)
+   - Pronunciation
+******************************************************************* */
+
+/* 9.1 Layout for NUYS text blocks */
+.symphony .text-wrap {
+  margin-top: 3rem;
+  margin-bottom: 1.5rem;
+}
+
+/* 9.1.1 Descriptive paragraphs under timelines */
+.symphony .overview {
+  margin-top: 1.5rem;   /* space between timeline and overview text */
+  font-size: 1.2rem;
+  line-height: 1.6;
+  text-align: center;
+}
+
+/* 9.1.2 Ensure symphony logo behaves like other logos */
+.symphony .section-logo img {
+  width: 85%;
+  max-width: 340px;
+  margin: 0 auto;
+}
+
+/* 9.2 Symphonic header spacing wrapper (for future use) */
+.symphony-header-block > * {
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+
+/* 9.3 NUYS piece title (above timeline) */
+.symphony-piece-title {
+  font-family: 'EB Garamond', serif;
+  font-size: 1.1rem;
+  text-align: left;
+  color: #acedff;
+  font-weight: bold;
+  margin: 0 0 0 0;
+  letter-spacing: 0.3px;
+}
+
+/* 9.4 NUYS composer name system — base + era-specific variants */
+
+/* 9.4.1 Shared base for NUYS composer names */
+.symphony-composer-name-base {
+  text-align: center;
+  line-height: 1.6;
+  margin: 0 0 0 0;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+}
+
+/* 9.4.2 Renaissance era */
+.symphony-composer-name-renaissance {
+  font-family: "Italianno", serif;
+  font-style: italic;
+  font-size: 2.2rem;
+  color: #E8F1F8;
+}
+
+/* 9.4.3 Baroque era */
+.symphony-composer-name-baroque {
+  font-family: "Pirata One", serif;
+  font-size: 2.4rem;
+  color: #E8F1F8;
+  letter-spacing: 1px;
+}
+
+/* 9.4.4 Classical era */
+.symphony-composer-name-classical {
+  font-family: "Parisienne", cursive;
+  font-size: 2.3rem;
+  font-weight: 600;
+  color: #E8F1F8;
+  letter-spacing: 0.5px;
+}
+
+/* 9.4.5 Romantic era */
+.symphony-composer-name-romantic {
+  font-family: "Allura", cursive;
+  font-size: 2.8rem;
+  color: #E8F1F8;
+}
+
+/* 9.4.6 Modern era */
+.symphony-composer-name-modern {
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 2.6rem;
+  font-weight: 700;
+  color: #E8F1F8;
+  letter-spacing: 0.8px;
+}
+
+/* 9.4.7 Postmodern era */
+.symphony-composer-name-postmodern {
+  font-family: "Orbitron", sans-serif;
+  font-size: 2.1rem;
+  font-weight: 700;
+  color: #E8F1F8;
+  letter-spacing: 0.8px;
+}
+
+/* 9.5 NUYS pronunciation line */
+.symphony-pronunciation {
+  display: block;
+  width: 100%;
+  text-align: right;
+  font-family: 'Marcellus SC', serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.6px;
+  color: #acedff;
+  margin: 0 0 0 0;
+  padding-right: var(--inner-inset);
+  line-height: 1.1;
+  font-variant: small-caps;
+}
+
+
+/* ──────────────────────────────
+   EXTRA BOTTOM SPACING FOR TEXT ENDINGS
+   (Applies to NUYS)
+   - Adds breathing room when a section ends with text
+   - Does NOT add space when ending on an image or divider
+────────────────────────────── */
+
+/* Add top spacing before the sub-menu only when it follows overview text */
+.overview + nav.sub-toc {
+  margin-top: 1.5rem;
+}
+
+
+
+/* ******************************************************************
+   10. CAROUSEL (SPECIAL TOPIC)
+******************************************************************* */
+
+/* 10.1 Outer frame for carousel — for positioning buttons */
+.carousel-frame {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: #000;
+  border: none;
+  z-index: 1;
+}
+
+/* 10.2 Caption band above image */
+.carousel-caption {
+  background: #6290d4;
+  color: #fff;
+  font-family: 'EB Garamond', serif;
+  text-align: center;
+  padding: 0.5rem;
+  font-size: 2.2rem;
+  letter-spacing: 0.3px;
+  font-weight: 500;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+}
+
+/* 10.3 Image area */
+.carousel-image-area {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: #000;
+}
+
+.carousel-image-area img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* 10.4 Carousel navigation buttons */
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(33, 68, 120, 0.6);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 2.4rem;
+  height: 2.4rem;
+  font-size: 1.4rem;
+  line-height: 2.4rem;
+  text-align: center;
+  cursor: pointer;
+  z-index: 20;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.carousel-btn:hover {
+  background-color: rgba(98, 144, 212, 0.9);
+  color: #c8f2ff;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-btn:active {
+  background-color: rgba(170, 238, 255, 1);
+  transform: translateY(-50%) scale(1.0);
+}
+
+.carousel-btn.left  { left: -0.5rem; }
+.carousel-btn.right { right: -0.5rem; }
+
+/* ******************************************************************
+   11A. ARCHIVE LINKS
+******************************************************************* */
+.archive-links-panel {
+  margin: 3rem auto 2rem;
+  padding: 1.2rem 1rem;
+  background: rgba(255,255,255,0.06);
+  border-top: 1px solid rgba(172,237,255,0.35);
+  border-bottom: 1px solid rgba(172,237,255,0.35);
+  text-align: center;
+}
+
+.archive-links-title {
+  font-family: "Marcellus SC", serif;
+  font-size: 1.2rem;
+  color: #acedff;
+  margin-bottom: 0.6rem;
+  letter-spacing: 0.05em;
+}
+
+.archive-links-list {
+  font-family: "EB Garamond", serif;
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+.archive-links-list a {
+  color: #8fd8ff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.archive-links-list a:hover {
+  text-decoration: underline;
+}
+
+.archive-links-list span {
+  color: rgba(255,255,255,0.45);
+  margin: 0 0.4rem;
+}
+
+/* 11A.1 Small sticky navigation top bar for archived notes */
+.archive-sticky-nav {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  background: rgba(10, 24, 42, 0.94);
+  border-bottom: 1px solid #6290d4;
+  text-align: center;
+  padding: 0.35rem 0.25rem;
+  font-family: "EB Garamond", Garamond, serif;
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+.archive-sticky-nav a {
+  color: #acedff;
+  text-decoration: none;
+  font-weight: bold;
+  margin: 0 0.25rem;
+}
+
+.archive-sticky-nav a:hover {
+  text-decoration: underline;
+}
+
+/* 11A.2 moves "Archived" badge a little lower */
+.archive-floating-badge {
+  top: 2.4rem;
+}
+
+/* 11A.3 Hide archive links until archive is ready */
+.archive-links-panel,
+.archive-links-panel + .divider,
+.archive-links-panel + .divider + .divider {
+  display: none;
+}
+
+/* ******************************************************************
+   11. DONATION BUTTONS
+******************************************************************* */
+.donate-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;             /* space between buttons */
+  margin: 2rem 0 4rem;   /* space from last image and bottom */
+}
+
+/* 11.1 Individual square buttons */
+.donate-square {
+  background-color: #214478;   /* symphony cyan */
+  color: #9ddfff;              /* light blue text */
+  width: 7rem;
+  height: 7rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  text-transform: uppercase;
+  line-height: 1.2;
+  letter-spacing: 1px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.4);
+}
+
+.donate-square:hover {
+  background-color: #6290d4;
+  color: #c8f2ff;
+  transform: translateY(-3px);
+  box-shadow: 0 0 18px rgba(1, 135, 165, 0.6);
+}
+
+.donate-square:active {
+  transform: translateY(0);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+}
+
+/* ******************************************************************
+   12. PHOTO/IMAGE CREDITS
+******************************************************************* */
+.photo-credit-note {
+  font-family: "EB Garamond", Garamond, serif;
+  font-size: 0.75rem;
+  font-style: italic;
+  color: #666;
+  text-align: center;
+  margin-top: 0.75rem;
+  line-height: 1.3;
+}
+
+.photo-credit-note a {
+  color: #6086bb;
+  text-decoration: none;
+}
+
+.photo-credit-note a:hover {
+  text-decoration: underline;
+}
+
+/* ******************************************************************
+   13. ARCHIVE BANNER
+******************************************************************* */
+.archive-banner {
+  background: #111;
+  color: #f5f5f5;
+  text-align: center;
+  padding: 0.75rem 1rem;
+  border-bottom: 2px solid #7ea7df;
+  font-family: "EB Garamond", Garamond, serif;
+}
+
+.archive-label {
+  font-size: 1rem;
+  font-weight: bold;
+  letter-spacing: 0.03em;
+  margin-bottom: 0.35rem;
+}
+
+.archive-links {
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.archive-links a {
+  color: #acedff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.archive-links a:hover {
+  text-decoration: underline;
+}
+
+.archive-links span {
+  color: #aaa;
+  margin: 0 0.25rem;
+}
+
+</style>
+</head>
+<body>
+
+
+<!-- ARCHIVE BANNER -->
+<div class="container">
+
+<template id="archive-banner-template">
+	<div class="archive-banner">
+	  <div class="archive-label">Archived Program — Fall 2026</div>
+	  <div class="archive-links">
+		<a href="../../index.html">← Current Program</a>
+		<span>|</span>
+		<a href="../archive-home.html">Archive Home</a>
+		<span>|</span>
+		<a href="../archive-composers.html">Composers</a>
+		<span>|</span>
+		<a href="../archive-works.html">Works</a>
+		<span>|</span>
+		<a href="../archive-topics.html">Topics</a>
+	  </div>
+	</div>
+
+<div class="archive-sticky-nav">
+  <a href="../../index.html">Current</a>
+  <a href="../archive-home.html">Archive</a>
+  <a href="../archive-composers.html">Composers</a>
+  <a href="../archive-works.html">Works</a>
+  <a href="../archive-topics.html">Topics</a>
+</div>
+
+	<div class="archive-floating-badge">Archived</div>
+</template>
+
+<!-- Intro Section -->
+<header id="top">
+  <img src="images-current/logo-nuye-intro.png" alt="NUYE Logo">
+  <div class="concert-info">
+    <h2>Fall Concert</h2>
+	<h3> Weber High School</h3>
+    <p class="concert-details">3:00 pm November 21, 2026</p>
+  </div>
+</header>
+
+<!-- Draft Banner, to mark when the program notes are up, but not yet complete -->
+<template id="draft-banner-template"></template>
+<!--comment the "section id="draftbanner" section out & put template markers around it when not needed-->
+<section id="draftbanner" class="draftbanner" style="display:none;">
+  <p><strong>⚠️ DRAFT VERSION:</strong> For final program notes, please check back on concert day.</p> 
+</section>
+
+
+
+<nav>
+  <span class="inactive-ensemble-nav"><a href="#prep">Preparatory</a> |</span>
+  <a href="#chamber">Chamber</a> |
+  <a href="#co-we">Chamber/Winds</a> |
+  <a href="#winds">Winds</a> |
+  <span class="inactive-ensemble-nav"><a href="#perc">Percussion</a> |</span>
+  <a href="#symphony">Symphony</a> 
+</nav>
+
+<!-- =================== Preparatory =================== -->
+<section id="prep" class="prep">
+  <div class="section-logo">
+    <img src="images-current/logo-nuyps.png" alt="NUYPS Logo">
+  </div>
+
+  <!-- Prep piece 1 -->
+  <div class="piece-entry">
+    <div class="piece-header">
+      <span class="piece-title">x</span>
+      <span class="piece-composer">x</span>
+    </div>
+
+    <div class="piece-pronunciation-line">
+      <span class="piece-pronunciation-left"></span>
+      <span class="piece-pronunciation-right"></span>
+    </div>
+
+    <div class="piece-separator"></div>
+
+    <p class="piece-description"></p>
+    <img class="piece-image optional-image" src="images-current/" alt="">
+  </div>
+
+
+</section>
+
+
+<!-- =================== Chamber =================== -->
+<section id="chamber" class="chamber">
+  <div class="section-logo">
+    <img src="images-current/logo-nuyco.png" alt="NUYCO Logo">
+  </div>
+
+  <!-- Chamber piece 1 -->
+  <div class="piece-entry">
+    <div class="piece-header">
+      <span class="piece-title">1812 Overture</span>
+      <span class="piece-composer">Pyotr Ilyich Tchaikovsky</span>
+    </div>
+
+    <div class="piece-pronunciation-line">
+      <span class="piece-pronunciation-left"></span>
+      <span class="piece-pronunciation-right">[chai-KOF-skee]</span>
+    </div>
+
+    <div class="piece-separator"></div>
+	
+    <p class="piece-description">
+      The famous <em>1812 Overture</em> is a staple at patriotic summer concerts all over the USA. It actually commemorates the Russian defeat of Napoleon in 1812. This version condenses the original 15+ minutes of music by highlighting several iconic sections - the opening hymn, pastoral interlude, Russian folk dance, and the victory melody with the Russian anthem. Sorry, no cannons in this version.  
+    </p>
+		
+    <img class="piece-image optional-image" src="images-current/Napoleon vor Moskau.webp" alt="">
+		
+  </div>
+
+  <div class="piece-entry">
+    <div class="piece-header">
+      <span class="piece-title">Arlington Sketches</span>
+      <span class="piece-composer">Elliot Del Borgo</span>
+    </div>
+
+    <div class="piece-pronunciation-line">
+      <span class="piece-pronunciation-left"></span>
+      <span class="piece-pronunciation-right"></span>
+    </div>
+
+    <div class="piece-separator"></div>
+
+    <p class="piece-description">
+      This piece may be about Arlington, Virginia or any other Arlington, the composer doesn't give details. Listen for the rhythmic energy that surrounds a more lyrical middle section. Del Borgo wrote many pieces for youth orchestras, and his music was played at the 1980 Winter Olympic closing festivites.
+    </p>
+    <img class="piece-image optional-image" src="images-current/" alt="">
+  </div>
+
+
+</section>
+
+<!-- =================== CO-WE =================== -->
+<section id="co-we" class="co-we">
+  <div class="section-logo">
+    <img src="images-current/logo-nuyco&we.png" alt="CO-WE Logo">
+  </div>
+
+  <!-- CO-WE Piece 1 -->
+  <div class="piece-entry">
+    <div class="piece-header">
+      <span class="piece-title">Hero</span>
+      <span class="piece-composer">Charles Mekealian</span>
+    </div>
+
+    <div class="piece-pronunciation-line">
+      <span class="piece-pronunciation-left"></span>
+      <span class="piece-pronunciation-right"></span>
+    </div>
+
+    <div class="piece-separator"></div>
+
+    <p class="piece-description">
+      This is a festival march that pays tribute to the heroes of everyday life. Melodic lines trade off among sections, giving everyone a chance to play. 
+    </p>
+
+    <img class="piece-image optional-image" src="images-current/hero.webp" alt="">
+  </div>
+</section>
+
+
+
+<!-- =================== Winds =================== -->
+<section id="winds" class="winds">
+  <div class="section-logo">
+    <img src="images-current/logo-nuywe.png" alt="NUYWE Logo">
+  </div>
+  
+
+  <!-- Winds piece 1 -->
+  <div class="piece-entry">
+    <div class="piece-header">
+      <span class="piece-title">You Better Sleigh!</span>
+      <span class="piece-composer">JaRod Hall</span>
+    </div>
+
+    <div class="piece-pronunciation-line">
+      <span class="piece-pronunciation-left"></span>
+      <span class="piece-pronunciation-right"></span>
+    </div>
+
+    <div class="piece-separator"></div>
+
+    <p class="piece-description">
+      A prelude to the winter holdidays, this joyous blend of Holiday Carols is inspired by jazz, R&B, and soul.  
+    </p>
+    <img class="piece-image optional-image" src="images-current/" alt="">
+  </div>
+  
+  <div class="piece-entry">
+    <div class="piece-header">
+      <span class="piece-title">Cyclone</span>
+      <span class="piece-composer">Micheal Oare</span>
+    </div>
+
+    <div class="piece-pronunciation-line">
+      <span class="piece-pronunciation-left"></span>
+      <span class="piece-pronunciation-right"></span>
+    </div>
+
+    <div class="piece-separator"></div>
+
+    <p class="piece-description">
+      Composer Michael Oare captures the drama of the massive spiralling storms known as cyclones. The relative peace of the opening measures is transformed by the arrival of the tempest. 
+    </p>
+    <img class="piece-image optional-image" src="images-current/cyclone.webp" alt="">
+  </div>
+  
+</section>
+
+<!-- =================== Percussion =================== -->
+<section id="perc" class="perc">
+  <div class="section-logo">
+    <img src="images-current/logo-nuye-percussion.webp" alt="Percussion Logo">
+  </div>
+
+
+  <!-- Perc piece 1 -->
+  <div class="piece-entry">
+    <div class="piece-header">
+      <span class="piece-title">x</span>
+      <span class="piece-composer">x</span>
+    </div>
+
+    <div class="piece-pronunciation-line">
+      <span class="piece-pronunciation-left"></span>
+      <span class="piece-pronunciation-right"></span>
+    </div>
+
+    <div class="piece-separator"></div>
+
+    <p class="piece-description">
+	x </p>
+
+    <img class="piece-image optional-image" src="images-current/" alt="">
+	
+  </div> 
+ 
+</section>
+
+  <div class="divider"></div>
+
+<!-- =================== Symphony =================== -->
+<section id="symphony" class="symphony">
+  <div class="section-logo">
+    <img src="images-current/logo-nuys-paleblue.webp" alt="NUYS Logo" class="fullwidth">
+  </div>
+    <div class="overview">
+     The Youth Symphony presents works from the Baroque to the Contemporary Eras.  
+    </div>
+	
+		<img src="images-current/overall-timeline.webp" alt="Timeline of Eras"
+		style="width:100%; display:block; margin:1rem 0;">
+	
+	<div class="overview">
+     An abandoned symphony, a mysterious piece transformed over centuries, a Russian ballet about a Roman gladiator, and a soundtrack for a fantastical Viking with a dragon. So different, and yet so powerful in their ability to elicit emotion.     
+    </div>
+
+  <!-- Symphony Sub-menu -->
+  <nav class="sub-toc">
+	<a href="#schubert-intro" class="toc-stack">
+      <span class="toc-line-main">Unfinished<br>Symphony</span></a>
+	<a href="#vitali-intro" class="toc-stack">
+      <span class="toc-line-main">Vitali<br>Chaconne</span></a>
+		<a href="#khachaturian-intro" class="toc-stack">
+      <span class="toc-line-main">Adagio</span>
+      <span class="toc-line-small">from</span>
+      <span class="toc-line-main">Spartacus</span>
+    </a>
+    <a href="#powell-intro" class="toc-stack">
+      <span class="toc-line-small">How To</span>
+      <span class="toc-line-main">Train Your</span>
+      <span class="toc-line-main">Dragon</span>
+    </a>
+  </nav>
+
+  <!-- Piece 1: Schubert - Unfinished Symphony (8)-->
+  <div id="schubert-intro" class="text-wrap">
+    <div class="symphony-header-block">
+      <p class="symphony-piece-title">Symphony No.8 "Unfinished" Mov.1</p>
+      <div class="symphony-composer-name-base symphony-composer-name-romantic">Franz Schubert</div>
+      <span class="symphony-pronunciation">[SHOO-bert]</span>
+      <div class="timeline-rect">
+		  <img src="images-current/schubert-timeline.webp" alt="Timeline Composer">
+	  </div>
+	  <div class="overview">
+      Schubert is renowned as a composer of beautiful songs. Here, he puts his song-like melodies to work in a symphony that, sadly, he never completed.
+      </div>
+		</div>
+  </div>
+  <div class="divider"></div>
+  
+    <!-- Block: Schubert biography -->
+    <div id="schubert-bio">
+    <img src="images-current/schubert-bio.webp" alt="portrait" style="width:100%; display:block;">
+    </div>
+  <div class="divider"></div>
+  
+    <!-- Block: Unfinished Symphony -->
+    <div id="schubert-unfinished">
+      <img src="images-current/schubert-unfinished.webp" alt="Piece Info" style="width:100%; display:block;">
+    </div>
+		
+	<div class="divider"></div>
+  <div class="divider"></div> 
+
+  <!-- Piece 2: Vitali -->
+  <div id="vitali-intro" class="text-wrap">
+    <div class="symphony-header-block">
+      <p class="symphony-piece-title">Chaconne in G minor</p>
+      <div class="symphony-composer-name-base symphony-composer-name-baroque">Tomaso Antonio Vitali</div>
+      <span class="symphony-pronunciation">[vih-TAL-ee]</span>
+      <div class="timeline-rect">
+		  <img src="images-current/vitali-timeline.webp" alt="Timeline Composer">
+	  </div>
+	  <div class="overview">
+      This fascinating piece has long been associated with Vitali ... but did he compose it?
+      </div>
+	</div>
+  </div>
+  <div class="divider"></div>
+  
+    <!-- Block: Vitali Bio -->
+    <div id="vitali-bio">
+    <img src="images-current/vitali-bio.webp" alt="portrait" style="width:100%; display:block;">
+    </div>
+  <div class="divider"></div>
+  
+    <!-- Block: Chaconne -->
+    <div id="vitali-chaconne">
+      <img src="images-current/vitali-chaconne.webp" alt="Piece Info" style="width:100%; display:block;">
+    </div>
+		<div class="divider"></div>
+		
+    <!-- Block: Soloists -->
+    <div id="work-vitali-chaconne">
+      <img src="images-current/vitali-chaconne-soloists.webp" alt="Piece Info" style="width:100%; display:block;">
+    </div>
+		<div class="divider"></div>
+		
+    <!-- Block: Schrank2 -->
+    <div id="vitali-chaconne-schrank2">
+      <img src="images-current/vitali-chaconne-schrank2.webp" alt="Piece Info" style="width:100%; display:block;">
+    </div>
+		<div class="divider"></div>
+		
+    <!-- Block: Authorship -->
+    <div id="vitali-chaconne-authorship">
+      <img src="images-current/vitali-chaconne-authorship.webp" alt="Piece Info" style="width:100%; display:block;">
+    </div>
+		<div class="divider"></div>
+
+    <!-- Block: Cello Spotlight -->
+    <div id="topic-cello">
+      <img src="images-current/topic-cello.webp" alt="Piece Info" style="width:100%; display:block;">
+    </div>
+
+  <div class="divider"></div>
+  <div class="divider"></div>
+
+  <!-- Piece 3: Khachaturian Adagio from Spartacus-->
+  <div id="khachaturian-intro" class="text-wrap">
+    <div class="symphony-header-block">
+      <p class="symphony-piece-title">Adagio from Spartacus</p>
+      <div class="symphony-composer-name-base symphony-composer-name-modern">Aram Khachaturian</div>
+      <span class="symphony-pronunciation">[ka-cha-TOO-ree-in]</span>
+      <div class="timeline-rect">
+		  <img src="images-current/khachaturian-timeline.webp" alt="Timeline Composer">
+	  </div>
+	  <div class="overview">
+      One of the "Big Three" Soviet composers of the Modern era, he blended Armenian folk music with powerful orchestration.
+      </div>
+		</div>
+  </div>
+  <div class="divider"></div>
+  
+    <!-- Block: Khachaturian biography -->
+    <div id="khachaturian-bio">
+    <img src="images-current/khachaturian-bio.webp" alt="portrait" style="width:100%; display:block;">
+    </div>
+  <div class="divider"></div>
+  
+    <!-- Block: Adagio from Spartacus -->
+    <div id="khachaturian-spartacus">
+      <img src="images-current/khachaturian-spartacus.webp" alt="Piece Info" style="width:100%; display:block;">
+    </div>
+		
+	<div class="divider"></div>
+  <div class="divider"></div>
+
+  <!-- Piece 4: Powell-->
+  <div id="powell-intro" class="text-wrap">
+    <div class="symphony-header-block">
+      <p class="symphony-piece-title">How to Train Your Dragon</p>
+      <div class="symphony-composer-name-base symphony-composer-name-modern">John Powell</div>
+      <span class="symphony-pronunciation"></span>
+      <div class="timeline-rect">
+		  <img src="images-current/powell-timeline.webp" alt="Timeline Composer">
+	  </div>
+	  <div class="overview">
+      John Powell has composed or co-composed soundtracks for some of the most popular Hollywood movies in recent years.
+      </div>
+		</div>
+  </div>
+  <div class="divider"></div>
+  
+    <!-- Block: Powell biography -->
+    <div id="powell-bio">
+    <img src="images-current/powell-bio.webp" alt="portrait" style="width:100%; display:block;">
+    </div>
+  <div class="divider"></div>
+  
+    <!-- Block: How to Train Your Dragon -->
+    <div id="powell-dragon">
+      <img src="images-current/powell-dragon.webp" alt="Piece Info" style="width:100%; display:block;">
+    </div>
+		
+	<div class="divider"></div>
+  <div class="divider"></div>
+	
+  
+    <!-- Block: Archives -->   
+<div class="archive-links-panel">
+
+  <div class="archive-links-title">
+    Have extra time? Explore the NUYE Program Notes Archive
+  </div>
+
+  <div class="archive-links-list">
+    <a href="archive/archive-home.html">Past Programs</a>
+
+    <span>•</span>
+
+    <a href="archive/archive-composers.html">Composers</a>
+
+    <span>•</span>
+
+    <a href="archive/archive-works.html">Works</a>
+
+    <span>•</span>
+
+    <a href="archive/archive-topics.html">Topics</a>
+  </div>
+
+</div>
+  <div class="divider"></div>
+  <div class="divider"></div>
+
+</section>
+
+<!-- =================== Final Section =================== -->
+  <section class="special1">
+      <img src="images-current/outtro.webp" alt="phones & thanks" style="width:100%; display:block;">
+
+<!-- Donation buttons -->
+<div class="donate-buttons">
+  <button class="donate-square" onclick="window.open('https://www.zeffy.com/en-US/ticketing/purchase-grocery-cards', '_blank')">
+    BUY<br>GROCERY<br>CARDS
+  </button>
+
+  <button class="donate-square" onclick="window.open('https://www.zeffy.com/en-US/donation-form/donations-7', '_blank')">
+    DONATE<br>WITH<br>ZEFFY
+  </button>
+</div>
+
+<div id="program-end"></div>
+
+<div class="photo-credit-note">
+  .
+  <br>
+  <a href="26fall-credits.html">Full image credits</a>
+</div>
+
+</section>
+
+</div>
+
+
+
+
+<!-- ===================== Floating Buttons ===================== -->
+<button id="btnTop"
+        onclick="location.href='#top'"
+        style="position:fixed; left:20px; bottom:20px; z-index:500;
+               padding:0.6rem 1rem; background-color:rgba(0,51,102,0.85);
+               color:white; border:none; border-radius:6px; cursor:pointer;
+               font-size:0.9rem; backdrop-filter:blur(2px);">
+  Top
+</button>
+
+<button id="btnNUYS"
+        onclick="location.href='#symphony'"
+        style="position:fixed; right:20px; bottom:20px; z-index:500;
+               display:none; padding:0.6rem 1rem; background-color:rgba(0,51,102,0.85);
+               color:white; border:none; border-radius:6px; cursor:pointer;
+               font-size:0.9rem; backdrop-filter:blur(2px);">
+  Symphony
+</button>
+
+
+
+
+<!-- Floating Button Visibility Script ===================== -->
+<script>
+const btnNUYS = document.getElementById('btnNUYS');
+const symphony = document.getElementById('symphony');
+
+function updateNUYS() {
+  const scrollY = window.scrollY || window.pageYOffset;
+  const symTop = symphony.offsetTop;
+
+  // once the page is scrolled down past the top of Symphony, show it
+  if (scrollY + 100 >= symTop) {
+    btnNUYS.style.display = 'block';
+  } else {
+    btnNUYS.style.display = 'none';
+  }
+}
+
+window.addEventListener('scroll', updateNUYS);
+window.addEventListener('DOMContentLoaded', updateNUYS);
+</script>
+
+
+
+
+<!-- toggle to turn the draftbanner on as needed (default is off) -->
+<script>
+  // Uncomment the line below to show the draft banner
+  //document.getElementById('draftbanner').style.display = 'block';//
+</script>
+
+</body>
+</html>
