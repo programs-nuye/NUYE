@@ -1,7 +1,8 @@
 <!--
 DRAFT
 NUYE Digital Program Notes
-BUILD: 29 Aug 2026 DRAFT VERSION
+BUILD: 29 Aug 2026 DRAFT VERSION FALL 2026 CONCERT
+Prep and Percussion turned off
 (this must be updated manually as a version check
 to combat some browsers caching too aggressively. If they have, use CTRL+SHIFT+R to hard reset.
 
@@ -264,10 +265,17 @@ nav a,
 
 /* 5.2 Background colors per ensemble */
 .prep      { background: #F5D8DB; }
-.chamber   { background: #E8B6BC; }
-.co-we     { background: #925e78; }
-.winds     { background: #D88F98;  }  /* old: #825e2e with white text */
+.chamber   { background: #E7BC86; }
+.co-we     { background: #B99B7D; }
+.winds     { background: #E8AD72;  }  /* old: #825e2e with white text */
 .perc      { background: #B66576; }
+
+/* Fall 2026: keep inactive ensembles in the source, but hide them. */
+.prep,
+.perc,
+.inactive-ensemble-nav {
+  display: none;
+}
 .symphony  { background: #214478; color: #acedff; position: relative; }
 .special1  { background: #000;    color: #fff; }
 
@@ -468,7 +476,6 @@ nav a,
 
 /* Hide optional images when src is empty */
 .optional-image[src="images-current/"] { display: none; }
-}
 
 
 
@@ -765,6 +772,13 @@ nav a,
   top: 2.4rem;
 }
 
+/* 11A.3 Hide archive links until archive is ready */
+.archive-links-panel,
+.archive-links-panel + .divider,
+.archive-links-panel + .divider + .divider {
+  display: none;
+}
+
 /* ******************************************************************
    11. DONATION BUTTONS
 ******************************************************************* */
@@ -928,10 +942,11 @@ nav a,
 
 
 <nav>
-  <a href="#prep">Preparatory</a> |
+  <span class="inactive-ensemble-nav"><a href="#prep">Preparatory</a> |</span>
   <a href="#chamber">Chamber</a> |
+  <a href="#co-we">Chamber/Winds</a> |
   <a href="#winds">Winds</a> |
-  <a href="#perc">Percussion</a> |
+  <span class="inactive-ensemble-nav"><a href="#perc">Percussion</a> |</span>
   <a href="#symphony">Symphony</a> 
 </nav>
 
@@ -972,42 +987,29 @@ nav a,
   <!-- Chamber piece 1 -->
   <div class="piece-entry">
     <div class="piece-header">
-      <span class="piece-title">x</span>
-      <span class="piece-composer">x</span>
+      <span class="piece-title">1812 Overture</span>
+      <span class="piece-composer">Pyotr Ilyich Tchaikovsky</span>
     </div>
 
     <div class="piece-pronunciation-line">
       <span class="piece-pronunciation-left"></span>
-      <span class="piece-pronunciation-right"></span>
+      <span class="piece-pronunciation-right">[chai-KOF-skee]</span>
     </div>
 
     <div class="piece-separator"></div>
 	
-    <img class="piece-image optional-image" src="images-current/" alt="">
-
     <p class="piece-description">
-      <em>x</em> x 
+      The famous <em>1812 Overture</em> is a staple at patriotic summer concerts all over the USA. It actually commemorates the Russian defeat of Napoleon in 1812. This version condenses the original 15+ minutes of music by highlighting several iconic sections - the opening hymn, pastoral interlude, Russian folk dance, and the victory melody with the Russian anthem. Sorry, no cannons in this version.  
     </p>
+		
+    <img class="piece-image optional-image" src="images-current/Napoleon vor Moskau.webp" alt="">
+		
   </div>
 
-
-
-</section>
-
-<template id="co-we-template">
-<!-- THIS SECTION SHOULD BE COMMENTED OUT IF CHAMBER & WINDS DON'T SHARE A PIECE -->
-<!-- =================== CO-WE =================== -->
-<!-- <section id="co-we" class="co-we">
-  <div class="section-logo">
-    <img src="images-current/logo-nuyco&we.png" alt="CO-WE Logo">
-  </div>
--->
- 
-  <!-- CO-WE Piece 1 -->
-<!--   <div class="piece-entry">
+  <div class="piece-entry">
     <div class="piece-header">
-      <span class="piece-title">unknown</span>
-      <span class="piece-composer">unknown</span>
+      <span class="piece-title">Arlington Sketches</span>
+      <span class="piece-composer">Elliot Del Borgo</span>
     </div>
 
     <div class="piece-pronunciation-line">
@@ -1018,13 +1020,42 @@ nav a,
     <div class="piece-separator"></div>
 
     <p class="piece-description">
-      This is some placeholder text. This is some placeholder text. This is some placeholder text. This is some placeholder text.
+      This piece may be about Arlington, Virginia or any other Arlington, the composer doesn't give details. Listen for the rhythmic energy that surrounds a more lyrical middle section. Del Borgo wrote many pieces for youth orchestras, and his music was played at the 1980 Winter Olympic closing festivites.
     </p>
     <img class="piece-image optional-image" src="images-current/" alt="">
   </div>
-</section> -->
 
-</template>
+
+</section>
+
+<!-- =================== CO-WE =================== -->
+<section id="co-we" class="co-we">
+  <div class="section-logo">
+    <img src="images-current/logo-nuyco&we.png" alt="CO-WE Logo">
+  </div>
+
+  <!-- CO-WE Piece 1 -->
+  <div class="piece-entry">
+    <div class="piece-header">
+      <span class="piece-title">Hero</span>
+      <span class="piece-composer">Charles Mekealian</span>
+    </div>
+
+    <div class="piece-pronunciation-line">
+      <span class="piece-pronunciation-left"></span>
+      <span class="piece-pronunciation-right"></span>
+    </div>
+
+    <div class="piece-separator"></div>
+
+    <p class="piece-description">
+      This is a festival march that pays tribute to the heroes of everyday life. Melodic lines trade off among sections, giving everyone a chance to play. 
+    </p>
+
+    <img class="piece-image optional-image" src="images-current/hero.webp" alt="">
+  </div>
+</section>
+
 
 
 <!-- =================== Winds =================== -->
@@ -1037,8 +1068,8 @@ nav a,
   <!-- Winds piece 1 -->
   <div class="piece-entry">
     <div class="piece-header">
-      <span class="piece-title">x</span>
-      <span class="piece-composer">x</span>
+      <span class="piece-title">You Better Sleigh!</span>
+      <span class="piece-composer">JaRod Hall</span>
     </div>
 
     <div class="piece-pronunciation-line">
@@ -1049,12 +1080,29 @@ nav a,
     <div class="piece-separator"></div>
 
     <p class="piece-description">
-      x  
+      A prelude to the winter holdidays, this joyous blend of Holiday Carols is inspired by jazz, R&B, and soul.  
     </p>
     <img class="piece-image optional-image" src="images-current/" alt="">
   </div>
   
+  <div class="piece-entry">
+    <div class="piece-header">
+      <span class="piece-title">Cyclone</span>
+      <span class="piece-composer">Micheal Oare</span>
+    </div>
 
+    <div class="piece-pronunciation-line">
+      <span class="piece-pronunciation-left"></span>
+      <span class="piece-pronunciation-right"></span>
+    </div>
+
+    <div class="piece-separator"></div>
+
+    <p class="piece-description">
+      Composer Michael Oare captures the drama of the massive spiralling storms known as cyclones. The relative peace of the opening measures is transformed by the arrival of the tempest. 
+    </p>
+    <img class="piece-image optional-image" src="images-current/cyclone.webp" alt="">
+  </div>
   
 </section>
 
@@ -1096,60 +1144,178 @@ nav a,
     <img src="images-current/logo-nuys-paleblue.webp" alt="NUYS Logo" class="fullwidth">
   </div>
     <div class="overview">
-     Comment.  
+     The Youth Symphony presents works from the Baroque to the Contemporary Eras.  
     </div>
 	
-		<img src="images-current/" alt="Timeline of Eras"
+		<img src="images-current/overall-timeline.webp" alt="Timeline of Eras"
 		style="width:100%; display:block; margin:1rem 0;">
 	
 	<div class="overview">
-     Summary.  
+     An abandoned symphony, a mysterious piece transformed over centuries, a Russian ballet about a Roman gladiator, and a soundtrack for a fantastical Viking with a dragon. So different, and yet so powerful in their ability to elicit emotion.     
     </div>
 
   <!-- Symphony Sub-menu -->
   <nav class="sub-toc">
-	<a href="#salute" class="toc-stack">
-      <span class="toc-line-main">Title<br>1</span></a>
-    <a href="#rococo" class="toc-stack">
-      <span class="toc-line-main">Title</span>
-      <span class="toc-line-small">on</span>
-      <span class="toc-line-main">3 lines</span>
+	<a href="#schubert-intro" class="toc-stack">
+      <span class="toc-line-main">Unfinished<br>Symphony</span></a>
+	<a href="#vitali-intro" class="toc-stack">
+      <span class="toc-line-main">Vitali<br>Chaconne</span></a>
+		<a href="#khachaturian-intro" class="toc-stack">
+      <span class="toc-line-main">Adagio</span>
+      <span class="toc-line-small">from</span>
+      <span class="toc-line-main">Spartacus</span>
     </a>
-    <a href="#shaker">Title 3<br> </a>
-	<a href="#forever" class="toc-stack">
-      <span class="toc-line-main">Title<br>4</span></a>
+    <a href="#powell-intro" class="toc-stack">
+      <span class="toc-line-small">How To</span>
+      <span class="toc-line-main">Train Your</span>
+      <span class="toc-line-main">Dragon</span>
+    </a>
   </nav>
 
-  <!-- Piece 1: Composer -->
-  <div id="salute" class="text-wrap">
+  <!-- Piece 1: Schubert - Unfinished Symphony (8)-->
+  <div id="schubert-intro" class="text-wrap">
     <div class="symphony-header-block">
-      <p class="symphony-piece-title">Title</p>
-      <div class="symphony-composer-name-base symphony-composer-name-modern">Composer</div>
-      <span class="symphony-pronunciation"></span>
+      <p class="symphony-piece-title">Symphony No.8 "Unfinished"</p>
+      <div class="symphony-composer-name-base symphony-composer-name-romantic">Franz Schubert</div>
+      <span class="symphony-pronunciation">[SHOO-bert]</span>
       <div class="timeline-rect">
-		  <img src="images-current/" alt="Timeline Composer">
+		  <img src="images-current/schubert-timeline.webp" alt="Timeline Composer">
 	  </div>
 	  <div class="overview">
-      Brief summary.
+      Schubert is renowned as a composer of beautiful songs. Here, he puts his song-like melodies to work in a symphony that, sadly, he never completed.
+      </div>
+		</div>
+  </div>
+  <div class="divider"></div>
+  
+    <!-- Block: Schubert biography -->
+    <div id="schubert-bio">
+    <img src="images-current/schubert-bio.webp" alt="portrait" style="width:100%; display:block;">
+    </div>
+  <div class="divider"></div>
+  
+    <!-- Block: Unfinished Symphony -->
+    <div id="schubert-unfinished">
+      <img src="images-current/schubert-unfinished.webp" alt="Piece Info" style="width:100%; display:block;">
+    </div>
+		
+	<div class="divider"></div>
+  <div class="divider"></div> 
+
+  <!-- Piece 2: Vitali -->
+  <div id="vitali-intro" class="text-wrap">
+    <div class="symphony-header-block">
+      <p class="symphony-piece-title">Chaconne in G minor</p>
+      <div class="symphony-composer-name-base symphony-composer-name-baroque">Tomaso Antonio Vitali</div>
+      <span class="symphony-pronunciation">[vih-TAL-ee]</span>
+      <div class="timeline-rect">
+		  <img src="images-current/vitali-timeline.webp" alt="Timeline Composer">
+	  </div>
+	  <div class="overview">
+      This fascinating piece has long been associated with Vitali ... but did he compose it?
       </div>
 	</div>
   </div>
   <div class="divider"></div>
   
-    <!-- Block: Composer -->
-    <div>
-    <img src="images-current/" alt="portrait" style="width:100%; display:block;">
+    <!-- Block: Vitali Bio -->
+    <div id="vitali-bio">
+    <img src="images-current/vitali-bio.webp" alt="portrait" style="width:100%; display:block;">
     </div>
   <div class="divider"></div>
   
-    <!-- Block: Piece -->
-    <div>
-      <img src="images-current/" alt="Piece Info" style="width:100%; display:block;">
+    <!-- Block: Chaconne -->
+    <div id="vitali-chaconne">
+      <img src="images-current/vitali-chaconne.webp" alt="Piece Info" style="width:100%; display:block;">
+    </div>
+		<div class="divider"></div>
+		
+    <!-- Block: Soloists -->
+    <div id="vitali-chaconne-soloists">
+      <img src="images-current/vitali-chaconne-soloists.webp" alt="Piece Info" style="width:100%; display:block;">
+    </div>
+		<div class="divider"></div>
+		
+    <!-- Block: Schrank2 -->
+    <div id="vitali-chaconne-schrank2">
+      <img src="images-current/vitali-chaconne-schrank2.webp" alt="Piece Info" style="width:100%; display:block;">
+    </div>
+		<div class="divider"></div>
+		
+    <!-- Block: Authorship -->
+    <div id="vitali-chaconne-authorship">
+      <img src="images-current/vitali-chaconne-authorship.webp" alt="Piece Info" style="width:100%; display:block;">
+    </div>
+		<div class="divider"></div>
+
+    <!-- Block: Cello Spotlight -->
+    <div id="topic-cello">
+      <img src="images-current/topic-cello.webp" alt="Piece Info" style="width:100%; display:block;">
     </div>
 
   <div class="divider"></div>
   <div class="divider"></div>
 
+  <!-- Piece 3: Khachaturian Adagio from Spartacus-->
+  <div id="khachaturian-intro" class="text-wrap">
+    <div class="symphony-header-block">
+      <p class="symphony-piece-title">Adagio from Spartacus</p>
+      <div class="symphony-composer-name-base symphony-composer-name-modern">Aram Khachaturian</div>
+      <span class="symphony-pronunciation">[ka-cha-TOO-ree-in]</span>
+      <div class="timeline-rect">
+		  <img src="images-current/khachaturian-timeline.webp" alt="Timeline Composer">
+	  </div>
+	  <div class="overview">
+      One of the "Big Three" Soviet composers of the Modern era, he blended Armenian folk music with powerful orchestration.
+      </div>
+		</div>
+  </div>
+  <div class="divider"></div>
+  
+    <!-- Block: Khachaturian biography -->
+    <div id="khachaturian-bio">
+    <img src="images-current/khachaturian-bio.webp" alt="portrait" style="width:100%; display:block;">
+    </div>
+  <div class="divider"></div>
+  
+    <!-- Block: Adagio from Spartacus -->
+    <div id="khachaturian-spartacus">
+      <img src="images-current/khachaturian-spartacus.webp" alt="Piece Info" style="width:100%; display:block;">
+    </div>
+		
+	<div class="divider"></div>
+  <div class="divider"></div>
+
+  <!-- Piece 4: Powell-->
+  <div id="powell-intro" class="text-wrap">
+    <div class="symphony-header-block">
+      <p class="symphony-piece-title">How to Train Your Dragon</p>
+      <div class="symphony-composer-name-base symphony-composer-name-modern">John Powell</div>
+      <span class="symphony-pronunciation"></span>
+      <div class="timeline-rect">
+		  <img src="images-current/powell-timeline.webp" alt="Timeline Composer">
+	  </div>
+	  <div class="overview">
+      John Powell has composed or co-composed soundtracks for some of the most popular Hollywood movies in recent years.
+      </div>
+		</div>
+  </div>
+  <div class="divider"></div>
+  
+    <!-- Block: Powell biography -->
+    <div id="powell-bio">
+    <img src="images-current/powell-bio.webp" alt="portrait" style="width:100%; display:block;">
+    </div>
+  <div class="divider"></div>
+  
+    <!-- Block: How to Train Your Dragon -->
+    <div id="powell-dragon">
+      <img src="images-current/powell-dragon.webp" alt="Piece Info" style="width:100%; display:block;">
+    </div>
+		
+	<div class="divider"></div>
+  <div class="divider"></div>
+	
   
     <!-- Block: Archives -->   
 <div class="archive-links-panel">
@@ -1182,7 +1348,7 @@ nav a,
 
 <!-- =================== Final Section =================== -->
   <section class="special1">
-      <img src="images-current/" alt="phones & thanks" style="width:100%; display:block;">
+      <img src="images-current/outtro.webp" alt="phones & thanks" style="width:100%; display:block;">
 
 <!-- Donation buttons -->
 <div class="donate-buttons">
@@ -1200,7 +1366,7 @@ nav a,
 <div class="photo-credit-note">
   .
   <br>
-  <a href="credits.html">Full image credits</a>
+  <a href="26fall-credits.html">Full image credits</a>
 </div>
 
 </section>
@@ -1253,51 +1419,13 @@ window.addEventListener('scroll', updateNUYS);
 window.addEventListener('DOMContentLoaded', updateNUYS);
 </script>
 
-<!-- Olympics Carousel Script -->
-<script>
-window.carouselImages = [
-  "images/olympics-carousel-1.webp",
-  "images/olympics-carousel-2.webp",
-  "images/olympics-carousel-3.webp",
-  "images/olympics-carousel-4.webp",
-  "images/olympics-carousel-5.webp",
-  "images/olympics-carousel-6.webp",
-  "images/olympics-carousel-7.webp",
-  "images/olympics-carousel-8.webp",
-  "images/olympics-carousel-9.webp",
-  "images/olympics-carousel-10.webp",
-  "images/olympics-carousel-11.webp",
-  "images/olympics-carousel-12.webp",
-  "images/olympics-carousel-13.webp"
-];
-
-let currentIndex = 0;
-
-function renderImage() {
-  const img = document.getElementById("carousel-image");
-  if (!img) return;
-  img.src = window.carouselImages[currentIndex];
-}
-
-function nextImage() {
-  currentIndex = (currentIndex + 1) % window.carouselImages.length;
-  renderImage();
-}
-
-function prevImage() {
-  currentIndex = (currentIndex - 1 + window.carouselImages.length) % window.carouselImages.length;
-  renderImage();
-}
-
-window.addEventListener("load", renderImage);
-</script>
 
 
 
 <!-- toggle to turn the draftbanner on as needed (default is off) -->
 <script>
   // Uncomment the line below to show the draft banner
-  document.getElementById('draftbanner').style.display = 'block';//
+  //document.getElementById('draftbanner').style.display = 'block';//
 </script>
 
 </body>
